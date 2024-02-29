@@ -127,7 +127,7 @@ cancel:
 
 ```
 
-![Alt text](<FOTOS/Снимок экрана_1.png>)
+![alt text](<FOTOS/Снимок экрана_1.png>)
 
 # Вариант №2 
 
@@ -258,7 +258,7 @@ cancel:
 
 
 ```
-![Alt text](<FOTOS/Снимок экрана_2.png>)
+![alt text](<FOTOS/Снимок экрана_2.png>)
 
 # Вариант 3 
 
@@ -389,4 +389,4 @@ cancel:
 
 ```
 
-![Alt text](<FOTOS/Снимок экрана_3.png>)
+![alt text](<FOTOS/Снимок экрана_3.png>)
