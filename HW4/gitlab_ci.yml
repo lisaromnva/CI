@@ -1,0 +1,111 @@
+stages:
+  - build
+  - test
+  - deploy
+
+job1:
+  stage: build
+  script:
+    - echo "Building..."
+    - npm install
+
+job2:
+  stage: test
+  script:
+    - echo "Testing..."
+    - npm test
+
+job3:
+  stage: deploy
+  script:
+    - echo "Deploying..."
+    - npm run deploy
+    
+job4:
+  stage: build
+  script:
+    - echo "Building..."
+    - npm install
+  artifacts:
+    paths:
+      - path/to/artifact
+  rules:
+    - exists:
+        - path/to/artifact
+
+
+
+############
+
+stages:          # Список стадий для задач и их порядок выполнения
+  - build
+  - test
+  - deploy
+
+build-job:       # Эта задача выполняется на стадии build, которая запускается первой.
+  stage: build
+  script:
+    - echo "Компиляция кода..."
+    - echo "Компиляция завершена."
+
+unit-test-job:   # Эта задача выполняется на стадии test.
+  stage: test    # Она начинается только после успешного выполнения задачи на стадии build.
+  script:
+    - echo "Запуск модульных тестов... Это займет около 60 секунд."
+    - sleep 60
+    - echo "Покрытие кода составляет 90%"
+
+lint-test-job:   # Эта задача также выполняется на стадии test.
+  stage: test    # Она может запускаться параллельно с задачей unit-test-job.
+  script:
+    - echo "Проверка кода на соответствие стандартам... Это займет около 10 секунд."
+    - sleep 10
+    - echo "Проблемы с кодом не обнаружены."
+
+deploy-job:      # Эта задача выполняется на стадии deploy.
+  stage: deploy  # Она запускается только после успешного выполнения *обеих* задач на стадии test.
+  environment: production
+  script:
+    - echo "Развертывание приложения..."
+    - echo "Приложение успешно развернуто."
+
+job1:
+  stage: build
+  script:
+    - echo "Сборка..."
+    - npm install
+  artifacts:
+    paths:
+      - path/to/artifact
+  rules:
+    - exists:
+        - path/to/artifact
+
+job2:
+  stage: test
+  script:
+    - echo "Тестирование..."
+    # - npm test
+  tags:
+    - gitlab-runner
+  allow_failure: true
+  when: manual
+
+
+job3:
+  stage: deploy
+  script:
+    - echo "Развертывание..."
+    # - npm run deploy
+
+job1:
+  stage: build
+  script:
+    - echo "Сборка..."
+    - npm install
+  artifacts:
+    paths:
+      - path/to/artifact
+  rules:
+    - exists:
+        - path/to/artifact
